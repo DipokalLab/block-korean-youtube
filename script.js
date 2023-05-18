@@ -3,8 +3,23 @@ window.addEventListener("DOMContentLoaded", () => {
     removeKoreanVideoInTitle()
 
     setInterval(() => {
-        removeKoreanVideoInTitle()
+        try {
+            removeKoreanVideoInTitle()
+        } catch (error) {
+            console.log(error)
+        }
     }, 1000);
+});
+
+window.addEventListener("scroll", (e) => {
+    const scrollHeight = document.body.querySelector("ytd-app").scrollHeight
+    const scrollTop = window.scrollY
+    const toleranceRange = 1500
+    if (scrollHeight - toleranceRange > scrollTop) {
+        return 0
+    }
+
+    removeKoreanVideoInTitle()
 });
 
 
